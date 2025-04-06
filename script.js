@@ -1,32 +1,7 @@
-// баланс из куки
-let balance = parseInt(localStorage.getItem('balance')) || 1000;
+const spinButton = document.getElementById('spinButton');
+const roulette = document.getElementById('roulette');
 
-function updateBalanceDisplay() {
-    document.getElementById('balance').innerText = `${balance}`;
-}
-
-// сохран в куки
-function saveBalanceToLocalStorage() {
-    localStorage.setItem('balance', balance); 
-}
-
-// соъранение каждую секунжу
-setInterval(saveBalanceToLocalStorage, 1000);
-
-document.getElementById('add').addEventListener('click', function() {
-    balance += 1000; // + 1к к балансу
-    updateBalanceDisplay();
+spinButton.addEventListener('click', () => {
+    roulette.style.transform = `rotate(${Math.floor(Math.random() * 360) + 3600}deg)`;
 });
-
-document.getElementById('subtract').addEventListener('click', function() {
-    if (balance >= 1000) { // проверка на наличие денег на балансе
-        balance -= 1000; // -1к с баланса
-        updateBalanceDisplay();
-    } else {
-        alert("Вы не можете уменьшить баланс более!");
-    }
-});
-
-// вызов 
-updateBalanceDisplay();
-saveBalanceToLocalStorage(); // 
+ 
